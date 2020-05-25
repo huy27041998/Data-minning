@@ -6,16 +6,16 @@ from sklearn.metrics import accuracy_score, confusion_matrix, recall_score, prec
 class Train:
     def __init__(self):
         super().__init__()
-    def loadData(self):
+    def loadData(self, filename):
         l = LoadData()
-        self.data = l.loadData()
+        self.data = l.loadData(filename)
     def train_and_test_split(self, percentage):
         self.train_data = {}
         self.test_data = {}
         self.train_data['class_name'], self.test_data['class_name'], self.train_data['data'], self.test_data['data'] = \
             train_test_split(self.data['class_name'], self.data['data'], train_size = percentage)
     def Train(self):
-        self.loadData()
+        self.loadData('mushrooms.csv')
         self.train_and_test_split(0.75)
         clf = tree.DecisionTreeClassifier()
         clf.fit(self.train_data['data'], self.train_data['class_name'])
