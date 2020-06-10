@@ -40,6 +40,7 @@ class LoadData:
                     # la so
                     temp.append(int(content))
             result['data'].append(temp)
+<<<<<<< HEAD
         return result
     def loadDataOneHot(self, filename):
         result = {'class_name': [], 'data': []}
@@ -77,3 +78,6 @@ def is_number(s):
         return True
     except ValueError:
         return False
+=======
+        return result
+>>>>>>> d4f24e18d98f36bd756041dfa27780af9dac94fc
