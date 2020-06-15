@@ -3,6 +3,7 @@ from sklearn.preprocessing import OneHotEncoder
 import sys
 np.set_printoptions(threshold=sys.maxsize)
 import pandas as pd
+from sklearn import preprocessing
 class LoadData:
     def __init__(self):
         super().__init__()
@@ -40,44 +41,49 @@ class LoadData:
                     # la so
                     temp.append(int(content))
             result['data'].append(temp)
-<<<<<<< HEAD
         return result
+
     def loadDataOneHot(self, filename):
-        result = {'class_name': [], 'data': []}
-        with open(filename, 'r', encoding='utf-8') as f:
-            datas = f.read().splitlines()
-        for data in datas:
-            contents = data.split(',')
-            class_name = contents[0]
-            result['class_name'].append(class_name)
-            temp = []
-            for content in contents[1:]:
-                if is_number(content):
-                    temp.append(int(content))
-                else:
-                    temp.append(content)
-            result['data'].append(temp)
-        x = np.array(result['data'])
+        # result = {'class_name': [], 'data': []}
+        # with open(filename, 'r', encoding='utf-8') as f:
+        #     datas = f.read().splitlines()
+        # for data in datas:
+        #     contents = data.split(',')
+        #     class_name = contents[0]
+        #     result['class_name'].append(class_name)
+        #     temp = []
+        #     for content in contents[1:]:
+        #         if is_number(content):
+        #             temp.append(int(content))
+        #         else:
+        #             temp.append(content)
+        #     result['data'].append(temp)
+        # x = np.array(result['data'])
+        # # print(x.shape)
+        # # enc = OneHotEncoder(dtype=np.int, sparse=False)
+        # # y = enc.fit_transform(x)
+        # # print(y.shape)
+        # # print(y[:, 0])
         # print(x.shape)
-        # enc = OneHotEncoder(dtype=np.int, sparse=False)
-        # y = enc.fit_transform(x)
-        # print(y.shape)
-        # print(y[:, 0])
-        print(x.shape)
-        for i in range(x.shape[1]):
-            column = x[:, i]
-            print(column.shape)
-            if not all(is_number(i) for i in column):
-                y = pd.get_dummies(column)
-                print(y.to_numpy())
-            # if all(i )
-        return result
+        # for i in range(x.shape[1]):
+        #     column = x[:, i]
+        #     if not all(is_number(i) for i in column):
+        #         y = pd.get_dummies(column)
+        #         print(y.shape)
+        #         x[:, i] = y
+        #     # if all(i )
+        # print(x.shape)
+        df = pd.read_csv('mushrooms.csv')
+        print(df.head(5))
+        # d = dict([e[:: -1] for e in enumerate(df.col.unique())])
+        # df.col = df.col.map(d) 
+        # enc = preprocessing.OneHotEncoder()
+        # print(enc.fit(df.as_matrix()).transform(df.as_matrix()).toarray())
+        # return result
+
 def is_number(s):
     try:
         float(s)
         return True
     except ValueError:
         return False
-=======
-        return result
->>>>>>> d4f24e18d98f36bd756041dfa27780af9dac94fc

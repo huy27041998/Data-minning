@@ -32,8 +32,6 @@ def predict_digit(img):
     # img = img/255.0
     #predicting the class
     res = model.predict(np.array([img1]))
-    print(res.shape)
-    print(np.argmax(res), res, '\n\n')
     # cv2.imshow('img', img1)
     # cv2.waitKey(0)
     return np.argmax(res), np.amax(res)
