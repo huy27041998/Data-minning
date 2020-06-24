@@ -6,7 +6,7 @@ from PIL import ImageGrab, Image
 import numpy as np
 from tensorflow import keras
 import cv2
-model = keras.models.load_model('digit_classification_model1.h5')
+model = keras.models.load_model('digit_classification_model2.h5')
 np.set_printoptions(suppress=True)
 def predict_digit(img):
     #resize image to 28x28 pixels

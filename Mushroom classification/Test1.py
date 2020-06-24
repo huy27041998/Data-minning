@@ -1,3 +1,3 @@
-from LoadData import LoadData
-l = LoadData()
-l.loadDataOneHot('mushrooms1.csv')
+from Train import Train
+t = Train()
+t.metric_prunning()

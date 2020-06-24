@@ -1,15 +1,23 @@
 import random
 import os
 import numpy as np
+import pandas as pd
+from sklearn.preprocessing import LabelEncoder
+
+
 class LoadData:
     def __init__(self):
         super().__init__()
+
     def loadData(self, limit, class_name=None):
         if class_name:
             with open('data/' + class_name, 'r', encoding='utf-8') as f:
                 data = f.read().splitlines()
                 f.close()
-            return {'class_name' : class_name[:limit], 'data': random.choices(self.handleData(data), k=limit)}
+            return {
+                'class_name': class_name[:limit],
+                'data': random.choices(self.handleData(data), k=limit)
+            }
         else:
             dirs = os.listdir('data/')
             result = {'class_name': [], 'data': []}
@@ -23,13 +31,22 @@ class LoadData:
                         # result['data'].append(data)
                         temp_class_name.append(class_name)
                         temp_data.append(data)
-                    result['data'].extend(random.choices(temp_data, k = limit))
+                    result['data'].extend(random.choices(temp_data, k=limit))
                     result['class_name'].extend(temp_class_name[:limit])
                     f.close()
             return result
+
     def loadStopWords(self):
         with open('stop-word', 'r', encoding='utf-8') as f:
             self.stopWords = f.read().splitlines()
         return self.stopWords
+
+    def loadDataCSV(self, filename):
+        data = pd.read_csv(filename)
+        lb = LabelEncoder()
+        data['category'] = lb.fit_transform(data['category'])
+        result = {'class_name': data['category'], 'data': data['text']}
+        return result
+
     def handleData(self, data):
         return data
